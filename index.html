@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfólio Profissional AeC</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Meu Portfólio AeC</h1>
+      <nav>
+        <ul>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="sobre">
+      <h2>Sobre Mim</h2>
+      <p>
+        Sou um profissional apaixonado por tecnologia e inovação. Aqui você
+        encontra meus currículos e experiências.
+      </p>
+    </section>
+
+    <section id="galeria">
+      <h2>Galeria de Imagens</h2>
+      <div class="galeria">
+        <img src="./img/aec1.png" alt="Imagem 1" onclick="abrirModal(this)" />
+        <img src="./img/aec2.png" alt="Imagem 2" onclick="abrirModal(this)" />
+        <img src="./img/aec3.png" alt="Imagem 3" onclick="abrirModal(this)" />
+        <img src="./img/aec4.png" alt="Imagem 4" onclick="abrirModal(this)" />
+        <img src="./img/aec5.png" alt="Imagem 5" onclick="abrirModal(this)" />
+        <img src="./img/aec6.png" alt="Imagem 6" onclick="abrirModal(this)" />
+      </div>
+    </section>
+
+    <div class="modal" id="modal">
+      <span class="close" onclick="fecharModal()">&times;</span>
+      <img id="modal-img" src="" alt="Imagem Ampliada" />
+    </div>
+
+    <section id="contato">
+      <h2>Contato</h2>
+      <p>Email: <a href="mailto:seuemail@email.com">Formatolivre@email.com</a></p>
+      <p>
+        LinkedIn:
+        <a href="https://linkedin.com/in/seuperfil" target="_blank"
+          >Meu LinkedIn</a
+        >
+      </p>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Kaio WebDev</p>
+    </footer>
+    <script src="index.js"></script>
+  </body>
+</html>
