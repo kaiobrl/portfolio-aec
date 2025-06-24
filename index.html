@@ -28,25 +28,27 @@
     <section id="galeria">
       <h2>Galeria de Imagens</h2>
       <div class="galeria">
-        <img src="./img/aec1.png" alt="Imagem 1" onclick="abrirModal(this)" />
-        <img src="./img/aec2.png" alt="Imagem 2" onclick="abrirModal(this)" />
-        <img src="./img/aec3.png" alt="Imagem 3" onclick="abrirModal(this)" />
-        <img src="./img/aec4.png" alt="Imagem 4" onclick="abrirModal(this)" />
-        <img src="./img/aec5.png" alt="Imagem 5" onclick="abrirModal(this)" />
-        <img src="./img/aec6.png" alt="Imagem 6" onclick="abrirModal(this)" />
-        <img src="./img/aec7.png" alt="Imagem 7" onclick="abrirModal(this)" />
-        <img src="./img/aec8.png" alt="Imagem 8" onclick="abrirModal(this)" />
-        <img src="./img/aec9.png" alt="Imagem 9" onclick="abrirModal(this)" />
-        <img src="./img/aec10.png" alt="Imagem 10" onclick="abrirModal(this)" />
-        <img src="./img/aec11.png" alt="Imagem 11" onclick="abrirModal(this)" />
-        <img src="./img/aec12.png" alt="Imagem 12" onclick="abrirModal(this)" />
-        <img src="./img/aec13.png" alt="Imagem 13" onclick="abrirModal(this)" />
+        <img src="./img/aec1.png" alt="Foto institucional AeC 1" onclick="abrirModal(this)" />
+        <img src="./img/aec2.png" alt="Equipe de trabalho AeC 2" onclick="abrirModal(this)" />
+        <img src="./img/aec3.png" alt="Ambiente de trabalho AeC 3" onclick="abrirModal(this)" />
+        <img src="./img/aec4.png" alt="Evento corporativo AeC 4" onclick="abrirModal(this)" />
+        <img src="./img/aec5.png" alt="Projeto em equipe AeC 5" onclick="abrirModal(this)" />
+        <img src="./img/aec6.png" alt="Reunião de equipe AeC 6" onclick="abrirModal(this)" />
+        <img src="./img/aec7.png" alt="Apresentação de resultados AeC 7" onclick="abrirModal(this)" />
+        <img src="./img/aec8.png" alt="Treinamento interno AeC 8" onclick="abrirModal(this)" />
+        <img src="./img/aec9.png" alt="Confraternização AeC 9" onclick="abrirModal(this)" />
+        <img src="./img/aec10.png" alt="Reconhecimento de equipe AeC 10" onclick="abrirModal(this)" />
+        <img src="./img/aec11.png" alt="Ambiente colaborativo AeC 11" onclick="abrirModal(this)" />
+        <img src="./img/aec12.png" alt="Palestra motivacional AeC 12" onclick="abrirModal(this)" />
+        <img src="./img/aec13.png" alt="Equipe premiada AeC 13" onclick="abrirModal(this)" />
       </div>
     </section>
 
-    <div class="modal" id="modal">
-      <span class="close" onclick="fecharModal()">&times;</span>
+    <div class="modal" id="modal" tabindex="-1" aria-modal="true" role="dialog">
+      <button class="slide-btn" id="prevBtn" aria-label="Imagem anterior">&#10094;</button>
+      <span class="close" onclick="fecharModal()" tabindex="0" aria-label="Fechar modal">&times;</span>
       <img id="modal-img" src="" alt="Imagem Ampliada" />
+      <button class="slide-btn" id="nextBtn" aria-label="Próxima imagem">&#10095;</button>
     </div>
 
     <section id="contato">
@@ -66,5 +68,59 @@
       <p>&copy; 2025 Kaio WebDev</p>
     </footer>
     <script src="index.js"></script>
-  </body>
-</html>
+    <script>
+      // Acessibilidade: fechar modal com ESC e foco no modal
+      document.addEventListener('keydown', function(event) {
+        const modal = document.getElementById('modal');
+        if (modal.style.display === 'flex' && (event.key === 'Escape' || event.key === 'Esc')) {
+          fecharModal();
+        }
+      });
+      // Foco automático no modal ao abrir
+      function abrirModal(img) {
+        imgAtual = imagens.indexOf(img);
+        document.getElementById('modal-img').src = img.src;
+        const modal = document.getElementById('modal');
+        modal.style.display = 'flex';
+        modal.focus();
+      }
+      // Permitir fechar modal com Enter na tecla de fechar
+      document.querySelector('.modal .close').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          fecharModal();
+        }
+      });
+      // Slider/carrossel
+      const imagens = Array.from(document.querySelectorAll('.galeria img'));
+      let imgAtual = 0;
+      function abrirModal(img) {
+        imgAtual = imagens.indexOf(img);
+        document.getElementById('modal-img').src = img.src;
+        const modal = document.getElementById('modal');
+        modal.style.display = 'flex';
+        modal.focus();
+      }
+      function mostrarImgModal(idx) {
+        if (idx < 0) idx = imagens.length - 1;
+        if (idx >= imagens.length) idx = 0;
+        imgAtual = idx;
+        document.getElementById('modal-img').src = imagens[imgAtual].src;
+      }
+      document.getElementById('prevBtn').onclick = function(e) {
+        e.stopPropagation();
+        mostrarImgModal(imgAtual - 1);
+      };
+      document.getElementById('nextBtn').onclick = function(e) {
+        e.stopPropagation();
+        mostrarImgModal(imgAtual + 1);
+      };
+      // Teclas de seta para navegar
+      document.addEventListener('keydown', function(event) {
+        const modal = document.getElementById('modal');
+        if (modal.style.display === 'flex') {
+          if (event.key === 'ArrowLeft') mostrarImgModal(imgAtual - 1);
+          if (event.key === 'ArrowRight') mostrarImgModal(imgAtual + 1);
+        }
+      });
+    </script>
+  </body
